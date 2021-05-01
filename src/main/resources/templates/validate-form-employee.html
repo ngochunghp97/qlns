@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Validate Form</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/basic.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row header">
+			<div class="col-md-12">
+				<h2>Hệ thống quản lý nhân sự</h2>
+			</div>
+		</div>
+		<div class="row menu">
+			<nav class="navbar navbar-expand-lg navbar-dark"
+				style="background-color: #0066cc;">
+				<div class="container-md">
+					<a class="navbar-brand" href="/">Home</a>
+					<button class="navbar-toggler" type="button"
+						data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+						aria-controls="navbarTogglerDemo02" aria-expanded="false"
+						aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item"><a class="nav-link" aria-current="page"
+								href="/employee">Employee</a></li>
+							<li class="nav-item"><a class="nav-link" href="/position">Position</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="/department">Department</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="row content">
+			<div class="col-md-2"></div>
+			<div class="col-md-8" align="center">
+				<h2>Thêm mới dữ liệu</h2>
+				<table>
+					<tr>
+						<td><span>Tên nhân viên</span><span style="color: red">*</span></td>
+						<td><input type="text" class="form-controll" id="name"></td>
+					</tr>
+					<tr>
+						<td><span>Ngày tháng năm sinh</span><span style="color: red">*</span></td>
+						<td><input type="date" class="form-controll"
+							style="width: 182px;" id="birthday"></td>
+					</tr>
+					<tr>
+						<td><span>Giới tính</span><span style="color: red">*</span></td>
+						<td><select class="form-controll" id="gender">
+								<option value="0"></option>
+								<option value="1">Nam</option>
+								<option value="2">Nữ</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><span>Địa chỉ</span><span style="color: red">*</span></td>
+						<td><textarea class="form-controll" style="width: 182px;"
+								id="address"></textarea></td>
+					</tr>
+					<tr>
+						<td><span>Ngày bắt đầu làm việc</span><span
+							style="color: red">*</span></td>
+						<td><input type="date" class="form-controll"
+							style="width: 182px;" id="start-date"></td>
+					</tr>
+					<tr>
+						<td><span>Ngày nghỉ việc</span></td>
+						<td><input type="date" class="form-controll"
+							style="width: 182px;"></td>
+					</tr>
+					<tr>
+						<td><span>Kinh ngiệm làm việc</span></td>
+						<td><input type="text" class="form-controll"></td>
+					</tr>
+					<tr>
+						<td><span>Chuyên ngành</span><span style="color: red">*</span></td>
+						<td><input type="text" class="form-controll" id="major"></td>
+					</tr>
+					<tr>
+						<td><span>Ngoại ngữ</span></td>
+						<td><input type="text" class="form-controll"></td>
+					</tr>
+					<tr>
+						<td><span>Tin học</span></td>
+						<td><input type="text" class="form-controll"></td>
+					</tr>
+					<tr>
+						<td><span>Vị trí</span></td>
+						<td><select class="form-controll" id="position">
+						</select></td>
+					</tr>
+					<tr>
+						<td><span>Phòng ban</span></td>
+						<td><select class="form-controll" id="department">
+						</select></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><span id="error"
+							style="color: red;">Dữ liệu chưa đúng</span></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center">
+							<button class="btn btn-primary" onclick="addNew()">Gửi</button>
+							<button class="btn btn-primary">Quay lại</button>
+						</td>
+					</tr>
+				</table>
+
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+		<div class="row footer">
+			<div class="col-md-12">Footer</div>
+		</div>
+	</div>
+	<script src="/js/is-valid.js">
+		
+	</script>
+	<script src="/js/ajax.js">
+		
+	</script>
+</body>
+
+</html>

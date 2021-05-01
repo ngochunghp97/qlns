@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thông tin nhân viên</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/basic.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row header">
+			<div class="col-md-12">
+				<h2>Hệ thống quản lý nhân sự</h2>
+			</div>
+		</div>
+		<div class="row menu">
+			<div class="col-md-10">
+				<nav class="navbar navbar-expand-lg navbar-dark"
+					style="background-color: #0066cc;">
+					<div class="container-md">
+						<a class="navbar-brand" href="/">Home</a>
+						<button class="navbar-toggler" type="button"
+							data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+							aria-controls="navbarTogglerDemo02" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item"><a class="nav-link"
+									aria-current="page" href="/employee">Employee</a></li>
+								<li class="nav-item"><a class="nav-link" href="/position">Position</a>
+								</li>
+								<li class="nav-item"><a class="nav-link" href="/department">Department</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+			<div class="col-md-2">
+				<nav class="navbar navbar-expand-lg navbar-dark"
+					style="background-color: #0066cc; float: right">
+					<div class="container-md">
+						<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+								<li class="nav-item"><a class="nav-link active"
+									aria-current="page" href="/logout">Logout</a></li>
+							</ul>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</div>
+		<div class="row menu-2">
+			<div class="col-md-2"></div>
+			<div class="col-md-8"></div>
+			<div class="col-md-2">
+				<a class="btn btn-primary" href="/employee/create">Thêm mới</a>
+			</div>
+		</div>
+		<div class="row content">
+			<div class="col-12">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th>STT</th>
+							<th>Tên nhân viên</th>
+							<th>Sinh nhật</th>
+							<th>Giới tính</th>
+							<th>Địa chỉ</th>
+							<th>Ngày vào làm</th>
+							<th>Ngày nghỉ việc</th>
+							<th>Kinh nghiệm</th>
+							<th>Ngoại ngữ</th>
+							<th>Tin học</th>
+							<th>Chuyên ngành</th>
+							<th>Thao tác</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="employee,i: ${emList}">
+							<td th:text="${(i.index+1)}"></td>
+							<td th:text="${employee.name}"></td>
+							<td th:text="${employee.birthDay}"></td>
+							<td th:text="${employee.gender}"></td>
+							<td th:text="${employee.address}"></td>
+							<td th:text="${employee.startDate}"></td>
+							<td th:text="${employee.endDate}"></td>
+							<td th:text="${employee.experience}"></td>
+							<td th:text="${employee.language}"></td>
+							<td th:text="${employee.computer}"></td>
+							<td th:text="${employee.major}"></td>
+							<td><a class="btn btn-info" href="#"> Chi tiết</a> <a
+								class="btn btn-danger">Xóa</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row footer">
+			<div class="col-md-12">Footer</div>
+		</div>
+	</div>
+	<script src="/js/is-valid.js"></script>
+</body>
+</html>
