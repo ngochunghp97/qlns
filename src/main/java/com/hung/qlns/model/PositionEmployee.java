@@ -21,11 +21,11 @@ public class PositionEmployee {
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name = "pos_id")
-	@JsonIgnoreProperties("posEmpList")
+	@JsonIgnoreProperties
 	private Position position;
 	@ManyToOne
 	@JoinColumn(name = "em_id")
-	@JsonIgnoreProperties("empDeList")
+	@JsonIgnoreProperties
 	private Employee employee;
 
 	public Long getId() {

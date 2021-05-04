@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -33,7 +34,7 @@ public class Position {
 	@JsonProperty("pos_desc")
 	private String posDesc;
 	@OneToMany(mappedBy = "position", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("position")
+	@JsonIgnore
 	private List<PositionEmployee> posEmpList;
 	
 	public Long getPosId() {

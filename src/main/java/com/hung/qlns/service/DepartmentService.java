@@ -21,8 +21,7 @@ public class DepartmentService {
 	}
 	
 	public List<Department> allDepartments(){
-		List<Department> deList = deRepository.findAll();
-		return deList;
+		return deRepository.findAll();
 	}
 	
 	public Optional<Department> getDepartment(Long deId){

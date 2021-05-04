@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -44,10 +45,10 @@ public class Employee {
 	@Column(name="gender")
 	private int gender;
 	@OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("position")
-	private List<PositionEmployee> posEmpList;
+	@JsonIgnore
+	private List<PositionEmployee> posEmList;
 	@OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("employee")
+	@JsonIgnore
 	private List<EmployeeDepartment> empDeList;
 	public Long getEmId() {
 		return emId;
@@ -115,11 +116,11 @@ public class Employee {
 	public void setGender(int gender) {
 		this.gender = gender;
 	}
-	public List<PositionEmployee> getPosEmpList() {
-		return posEmpList;
+	public List<PositionEmployee> getPosEmList() {
+		return posEmList;
 	}
-	public void setPosEmpList(List<PositionEmployee> posEmpList) {
-		this.posEmpList = posEmpList;
+	public void setPosEmpList(List<PositionEmployee> posEmList) {
+		this.posEmList = posEmList;
 	}
 	public List<EmployeeDepartment> getEmpDeList() {
 		return empDeList;
@@ -128,7 +129,7 @@ public class Employee {
 		this.empDeList = empDeList;
 	}
 	public Employee(Long emId, String name, Date birthDay, String address, Date startDate, Date endDate, String experience,
-			String language, String computer, String major, int gender, List<PositionEmployee> posEmpList,
+			String language, String computer, String major, int gender, List<PositionEmployee> posEmList,
 			List<EmployeeDepartment> empDeList) {
 		super();
 		this.emId = emId;
@@ -142,7 +143,7 @@ public class Employee {
 		this.computer = computer;
 		this.major = major;
 		this.gender = gender;
-		this.posEmpList = posEmpList;
+		this.posEmList = posEmList;
 		this.empDeList = empDeList;
 	}
 	public Employee() {
