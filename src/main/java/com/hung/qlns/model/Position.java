@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "position")
 public class Position {
@@ -21,12 +24,16 @@ public class Position {
 	@Column(name = "pos_id")
 	private Long posId;
 	@Column(name = "pos_name")
+	@JsonProperty("pos_name")
 	private String posName;
 	@Column(name = "pos_code")
+	@JsonProperty("pos_code")
 	private String posCode;
 	@Column(name = "pos_desc")
+	@JsonProperty("pos_desc")
 	private String posDesc;
 	@OneToMany(mappedBy = "position", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("position")
 	private List<PositionEmployee> posEmpList;
 	
 	public Long getPosId() {

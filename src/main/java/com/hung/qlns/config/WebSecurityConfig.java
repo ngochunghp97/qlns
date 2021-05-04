@@ -1,7 +1,6 @@
 package com.hung.qlns.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -17,19 +16,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //config xac thuc
 	@Autowired
 	private MyUserDetailService myUser;
-	@Bean
-	public BCryptPasswordEncoder bCryptPasswordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	@Autowired
+	public BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(myUser).passwordEncoder(bCryptPasswordEncoder());
+		auth.userDetailsService(myUser).passwordEncoder(bCryptPasswordEncoder);
 
 	}
 //Config loc request
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests()
+		.antMatchers("/api/*").permitAll()
 		.antMatchers("/").permitAll()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/signup").permitAll()

@@ -28,7 +28,7 @@ public class PositionController {
 	@GetMapping("/position")
 	public ResponseEntity<Position> allPosition() {
 		List<Position> poList = poService.allPosition();
-		return new ResponseEntity(new ResponseData(HttpStatus.OK.value(),poList), HttpStatus.OK);
+		return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), poList),HttpStatus.OK);
 	}
 
 	@GetMapping("/position/{id}")

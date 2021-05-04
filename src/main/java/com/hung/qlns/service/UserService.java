@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,10 @@ public class UserService {
 
 	@Autowired
 	private UserRepository uRepository;
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
 	public List<User> allUser() {
 		return uRepository.findAll();
@@ -29,7 +32,7 @@ public class UserService {
 	public User createUser(User user) {
 		User u = new User();
 		u.setUserName(user.getUserName().trim());
-		u.setPassWord(bCryptPasswordEncoder.encode(user.getPassWord()));
+		u.setPassWord(bCryptPasswordEncoder().encode(user.getPassWord()));
 		uRepository.save(u);
 		return u;
 	}
@@ -37,7 +40,7 @@ public class UserService {
 		Optional<User> u = uRepository.findById(userId);
 		User nUser = u.get();
 		nUser.setUserName(user.getUserName().trim());
-		nUser.setPassWord(bCryptPasswordEncoder.encode(user.getPassWord()));
+		nUser.setPassWord(bCryptPasswordEncoder().encode(user.getPassWord()));
 		uRepository.save(nUser);
 		return nUser;
 	}

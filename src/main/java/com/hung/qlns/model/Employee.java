@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="employee")
 public class Employee {
@@ -42,8 +44,10 @@ public class Employee {
 	@Column(name="gender")
 	private int gender;
 	@OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("position")
 	private List<PositionEmployee> posEmpList;
 	@OneToMany(mappedBy = "employee", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("employee")
 	private List<EmployeeDepartment> empDeList;
 	public Long getEmId() {
 		return emId;

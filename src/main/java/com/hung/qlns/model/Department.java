@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="department")
 public class Department {
@@ -26,6 +28,7 @@ public class Department {
 	@Column(name="de_desc")
 	private String deDesc;
 	@OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("department")
 	private List<EmployeeDepartment> empDeList;
 	public Long getDeId() {
 		return deId;
