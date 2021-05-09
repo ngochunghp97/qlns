@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hung.qlns.dto.DepartmentDTO;
 import com.hung.qlns.dto.ResponseData;
 import com.hung.qlns.model.Department;
 import com.hung.qlns.service.DepartmentService;
@@ -37,8 +38,9 @@ public class DepartmentController {
 	}
 	
 	@PostMapping("/department")
-	public ResponseEntity<Object> createDepartment(@RequestBody Department department){
-		return new ResponseEntity<Object>(deService.createDepartment(department), HttpStatus.OK);
+	public ResponseEntity<Department> createDepartment(@RequestBody DepartmentDTO departmentInput){
+		Department department = deService.createDepartment(departmentInput);
+		return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), department), HttpStatus.OK);
 	}
 	
 	@PutMapping("/department/{id}")

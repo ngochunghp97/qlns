@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hung.qlns.dto.PositionEmployeeDTO;
 import com.hung.qlns.model.Employee;
 import com.hung.qlns.model.Position;
 import com.hung.qlns.model.PositionEmployee;
@@ -22,37 +23,41 @@ public class PositionEmployeeService {
 	@Autowired
 	private PositionEmployeeRepository posEmRepository;
 
-	public PositionEmployee assignPosition(Long posId, Employee employee) {
+	public PositionEmployee assignPosition(PositionEmployeeDTO posEmInput) {
 
-		Optional<Position> pos = posRepository.findById(posId);
-		Optional<Employee> em = emRepository.findById(employee.getEmId());
+		Optional<Position> pos = posRepository.findById(posEmInput.getPosId());
+		Optional<Employee> em = emRepository.findById(posEmInput.getEmId());
 
 		PositionEmployee pe = new PositionEmployee();
 		pe.setEmployee(em.get());
 		pe.setPosition(pos.get());
 		posEmRepository.save(pe);
-		return null;
+		return pe;
 
 	}
 
-	public PositionEmployee update(Long posId, Employee employee) {
-		Optional<Position> pos = posRepository.findById(posId);
+	public PositionEmployee update(PositionEmployeeDTO posEmInput) {
+		Optional<Position> pos = posRepository.findById(posEmInput.getPosId());
 
-		PositionEmployee pe = posEmRepository.findByEmployee(employee);
-		pe.setPosition(pos.get());
-		posEmRepository.save(pe);
-		return null;
+		Optional<PositionEmployee> pe = posEmRepository.findById(posEmInput.getEmId());
+		PositionEmployee pes = pe.get();
+		pes.setPosition(pos.get());
+		posEmRepository.save(pes);
+		return pes;
 
 	}
 
-	public boolean isValid(Long posId, Employee employee) {
-		Optional<Position> pos = posRepository.findById(posId);
-		Optional<Employee> em = emRepository.findById(employee.getEmId());
+	public boolean isValid(PositionEmployeeDTO posEmInput) {
+		Optional<Position> pos = posRepository.findById(posEmInput.getPosId());
+		Optional<Employee> em = emRepository.findById(posEmInput.getEmId());
 		return pos.isPresent() && em.isPresent();
 	}
 
-	public boolean isUnique(Employee employee) {
-		return posEmRepository.findByEmployee(employee) == null;
+	public boolean isUnique(PositionEmployeeDTO posEmInput) {
+		Optional<Employee> e = emRepository.findById(posEmInput.getEmId());
+		Employee em = e.get();
+		
+		return posEmRepository.findByEmployee(em) == null;
 	}
 
 }

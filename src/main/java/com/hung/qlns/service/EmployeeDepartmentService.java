@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hung.qlns.dto.EmployeeDepartmentDTO;
 import com.hung.qlns.model.Department;
 import com.hung.qlns.model.Employee;
 import com.hung.qlns.model.EmployeeDepartment;
@@ -22,34 +23,37 @@ public class EmployeeDepartmentService {
 	@Autowired
 	private EmployeeDepartmentRepositiory emDeRepositiory;
 
-	public boolean isValid(Long deId, Employee employee) {
-		Optional<Employee> em = emRepository.findById(employee.getEmId());
-		Optional<Department> de = deRepository.findById(deId);
+	public boolean isValid(EmployeeDepartmentDTO emDeInput) {
+		Optional<Employee> em = emRepository.findById(emDeInput.getEmId());
+		Optional<Department> de = deRepository.findById(emDeInput.getDeId());
 
 		return em.isPresent() && de.isPresent();
 	}
 
-	public boolean isUnique(Employee employee) {
-		return emDeRepositiory.findByEmployee(employee) == null;
+	public boolean isUnique(EmployeeDepartmentDTO emDeInput) {
+		Optional<Employee> e = emRepository.findById(emDeInput.getEmId());
+		Employee em = e.get();
+		return emDeRepositiory.findByEmployee(em) == null;
 	}
 
-	public EmployeeDepartment assignDepartment(Long deId, Employee employee) {
-		Optional<Employee> em = emRepository.findById(employee.getEmId());
-		Optional<Department> de = deRepository.findById(deId);
+	public EmployeeDepartment assignDepartment(EmployeeDepartmentDTO emDeInput) {
+		Optional<Employee> em = emRepository.findById(emDeInput.getEmId());
+		Optional<Department> de = deRepository.findById(emDeInput.getDeId());
 
 		EmployeeDepartment ed = new EmployeeDepartment();
 		ed.setEmployee(em.get());
 		ed.setDepartment(de.get());
 		emDeRepositiory.save(ed);
-		return null;
+		return ed;
 	}
 
-	public EmployeeDepartment update(Long deId, Employee employee) {
-		Optional<Department> de = deRepository.findById(deId);
+	public EmployeeDepartment update(EmployeeDepartmentDTO emDeInput) {
+		Optional<Department> de = deRepository.findById(emDeInput.getDeId());
 
-		EmployeeDepartment ed = emDeRepositiory.findByEmployee(employee);
-		ed.setDepartment(de.get());
-		emDeRepositiory.save(ed);
-		return null;
+		Optional<EmployeeDepartment> ed = emDeRepositiory.findById(emDeInput.getEmId());
+		EmployeeDepartment eds = ed.get();
+		eds.setDepartment(de.get());
+		emDeRepositiory.save(eds);
+		return eds;
 	}
 }

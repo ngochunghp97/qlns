@@ -14,7 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name="employee")
@@ -23,6 +23,7 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="em_id")
+	@JsonProperty("em_id")
 	private Long emId;
 	@Column(name ="name")
 	private String name;
@@ -31,8 +32,10 @@ public class Employee {
 	@Column(name="address")
 	private String address;
 	@Column(name="start_date")
+	@JsonProperty("start_date")
 	private Date startDate;
 	@Column(name="end_date")
+	@JsonProperty("end_date")
 	private Date endDate;
 	@Column(name="experience")
 	private String experience;

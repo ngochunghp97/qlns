@@ -38,22 +38,29 @@
 				</div>
 			</nav>
 		</div>
+		<div class="row menu-2">
+			<div class="col-md-2"></div>
+			<div class="col-md-8"></div>
+			<div class="col-md-2">
+				<a class="btn btn-primary" href="/employee/form">Thêm mới</a>
+			</div>
+		</div>
 		<div class="row content">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" align="center">
 				<h2>Thêm mới dữ liệu</h2>
 				<table>
 					<tr>
-						<td><span>Tên vị trí</span><span style="color: red">*</span></td>
-						<td><input type="text" class="form-control" id="pos-name"></td>
+						<td><span>Tên phòng ban</span><span style="color: red">*</span></td>
+						<td><input type="text" class="form-control" id="de-name"></td>
 					</tr>
 					<tr>
-						<td><span>Mã vị trí</span><span style="color: red">*</span></td>
-						<td><input type="text" class="form-control" id="pos-code"></td>
+						<td><span>Mã phòng ban</span><span style="color: red">*</span></td>
+						<td><input type="text" class="form-control" id="de-code"></td>
 					</tr>
 					<tr>
-						<td><span>Mô tả vị trí</span></td>
-						<td><textarea class="form-control" id="pos-desc"
+						<td><span>Mô tả phòng ban</span></td>
+						<td><textarea class="form-control" id="de-desc"
 								style="width: 182px;"></textarea></td>
 					</tr>
 					<tr>
@@ -62,7 +69,8 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<button class="btn btn-primary" onclick="addNew()">Gửi</button>
+							<button class="btn btn-primary" id="add-department"
+								onclick="update()">Gửi</button>
 							<button class="btn btn-primary" onclick="goBack()">Quay
 								lại</button>
 						</td>
@@ -76,7 +84,7 @@
 			<div class="col-md-12">Footer</div>
 		</div>
 	</div>
-	<script src="/js/is-valid-position.js">
+	<script src="/js/is-valid-department.js">
 		
 	</script>
 </body>

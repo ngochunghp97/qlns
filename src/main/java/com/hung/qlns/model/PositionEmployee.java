@@ -9,7 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 @Entity
 @Table(name = "position_employee")
@@ -21,11 +22,11 @@ public class PositionEmployee {
 	private Long id;
 	@ManyToOne
 	@JoinColumn(name = "pos_id")
-	@JsonIgnoreProperties
+	@JsonProperty("pos_id")
 	private Position position;
 	@ManyToOne
 	@JoinColumn(name = "em_id")
-	@JsonIgnoreProperties
+	@JsonProperty("em_id")
 	private Employee employee;
 
 	public Long getId() {

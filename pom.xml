@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.4.4</version>
+		<version>2.4.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.hung</groupId>
@@ -22,6 +22,7 @@
 		<spring.thymeleaf.version>2.4.3</spring.thymeleaf.version>
 		<spring.security.vesion>5.4.5</spring.security.vesion>
 		<spring.security.config.version>5.4.5</spring.security.config.version>
+		<spring.thymeleaf.extras.version>3.0.4.RELEASE</spring.thymeleaf.extras.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -74,6 +75,12 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring.security.config.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
+		<dependency>
+			<groupId>org.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
+			<version>${spring.thymeleaf.extras.version}</version>
 		</dependency>
 
 

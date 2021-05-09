@@ -26,8 +26,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //Config loc request
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests()
-		.antMatchers("/api/*").permitAll()
+		http
+		.httpBasic()
+		.and()
+		.authorizeRequests()
 		.antMatchers("/").permitAll()
 		.antMatchers("/login").permitAll()
 		.antMatchers("/signup").permitAll()
@@ -53,7 +55,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring()
 		.antMatchers("/css/*")
-		.antMatchers("/api/*")
 		.antMatchers("/js/*");
 	}
 }

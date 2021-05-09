@@ -42,19 +42,25 @@
 			<div class="col-md-2"></div>
 			<div class="col-md-8" align="center">
 				<h2>Thêm mới dữ liệu</h2>
-				<table>
+				<table th:each="p,i: ${posDetailList}">
+					<tr>
+						<td><span>Mã vị trí</span><span style="color: red">*</span></td>
+						<td><span th:text="${p.posId}" id="pos-id"></span></td>
+					</tr>
 					<tr>
 						<td><span>Tên vị trí</span><span style="color: red">*</span></td>
-						<td><input type="text" class="form-control" id="pos-name"></td>
+						<td><input type="text" th:value="${p.posName}"
+							class="form-control" id="pos-name"></td>
 					</tr>
 					<tr>
 						<td><span>Mã vị trí</span><span style="color: red">*</span></td>
-						<td><input type="text" class="form-control" id="pos-code"></td>
+						<td><input type="text" th:value="${p.posCode}"
+							class="form-control" id="pos-code"></td>
 					</tr>
 					<tr>
 						<td><span>Mô tả vị trí</span></td>
-						<td><textarea class="form-control" id="pos-desc"
-								style="width: 182px;"></textarea></td>
+						<td><textarea th:value="${p.posDesc}" class="form-control"
+								id="pos-desc" style="width: 182px;"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><span id="error"
@@ -62,7 +68,7 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<button class="btn btn-primary" onclick="addNew()">Gửi</button>
+							<button class="btn btn-primary" onclick="update()">Gửi</button>
 							<button class="btn btn-primary" onclick="goBack()">Quay
 								lại</button>
 						</td>

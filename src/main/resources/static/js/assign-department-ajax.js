@@ -2,19 +2,18 @@
  * 
  */
 $(document).ready(function(){
-	var $position = $("#position");
+	var $emName = $("#em-name");
 	
 	$.ajax({
 		type: "GET",
-		url: "http://localhost:8081/api/position",
+		url: "http://localhost:8081/api/employee",
 		dataType: "json",
 		success: function(data){
-		console.log("success",data);
 			for(var i in data){
-			console.log("success",data[i]);
-			}
-			$.each(data[i], function(j, pos){
-				$position.append('<option>'+pos.pos_name+'</option>')
+
+			}			
+			$.each(data[i], function(j, em){
+				$emName.append("<option value='"+em.em_id+"'>"+em.name+'</option>')
 			});
 		},
 		error: function(){
@@ -23,19 +22,19 @@ $(document).ready(function(){
 	});
 });
 $(document).ready(function(){
-	var $department = $("#department");
+	var $deName = $("#de-name");
 	
 	$.ajax({
 		type: "GET",
 		url: "http://localhost:8081/api/department",
 		dataType: "json",
 		success: function(data){
-		console.log("success",data);
+
 			for(var i in data){
-			console.log("success",data[i]);
+
 			}
 			$.each(data[i], function(j, de){
-				$department.append('<option>'+de.de_name+'</option>')
+				$deName.append("<option value='"+de.de_id+"'>"+de.de_name+'</option>')
 			});
 		},
 		error: function(){

@@ -6,6 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hung.qlns.dto.EmPosDeProjection;
+import com.hung.qlns.dto.EmpAllProjection;
+import com.hung.qlns.dto.EmployeeDTO;
 import com.hung.qlns.model.Employee;
 import com.hung.qlns.repository.EmployeeRepository;
 
@@ -16,8 +19,7 @@ public class EmployeeService {
 	private EmployeeRepository emRepository;
 
 	public List<Employee> allEmployee() {
-		List<Employee> emList = emRepository.findAll();
-		return emList;
+		return emRepository.findAll();
 	}
 
 	public Optional<Employee> getEmployee(Long emId) {
@@ -43,19 +45,56 @@ public class EmployeeService {
 		return nEmp;
 	}
 
-	public Employee createEmployee(Employee employee) {
-		emRepository.save(employee);
-		return employee;
+	public Employee createEmployee(EmployeeDTO employeeInput) {
+		Employee em = new Employee();
+		em.setName(employeeInput.getName());
+		em.setBirthDay(employeeInput.getBirthDay());
+		em.setAddress(employeeInput.getAddress());
+		em.setStartDate(employeeInput.getStartDate());
+		em.setEndDate(employeeInput.getEndDate());
+		em.setExperience(employeeInput.getExperience());
+		em.setLanguage(employeeInput.getLanguage());
+		em.setComputer(employeeInput.getComputer());
+		em.setMajor(employeeInput.getMajor());
+		em.setGender(employeeInput.getGender());
+		
+		emRepository.save(em);
+		return em;
 	}
 
-	public Long deleteEmployee(Long emId) {
-		emRepository.deleteById(emId);
-		return emId;
+	public boolean deleteEmployee(Long emId) {
+		Optional<Employee> em = emRepository.findById(emId);
+		if(em.isPresent()) {
+			Employee e = em.get();
+			emRepository.delete(e);
+			return true;
+		}else {
+			return false;
+		}
+		
 	}
 
 	public boolean isValid(Long emId) {
 		Optional<Employee> emp = emRepository.findById(emId);
 		return emp.isPresent();
 	}
-
+	
+	public List<EmPosDeProjection> getEmPosDe() {
+		return emRepository.getEmPosDe();
+	}
+	
+	public List<EmpAllProjection> getEmAll(){
+		return emRepository.getEmAll();
+	}
+	
+	public EmpAllProjection getEmployeeDetail(Long emId) {
+		return emRepository.getEmployeeDetail(emId);
+	}
+	
+	public EmPosDeProjection getEmPos(Long emId) {
+		return emRepository.getEmPos(emId);
+	}
+	public EmPosDeProjection getEmDe(Long emId) {
+		return emRepository.getEmDe(emId);
+	}
 }

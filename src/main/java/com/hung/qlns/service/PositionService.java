@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hung.qlns.dto.PositionDTO;
 import com.hung.qlns.model.Position;
 import com.hung.qlns.repository.PositionRepository;
 
@@ -22,7 +23,11 @@ public class PositionService {
 		return poRepository.findById(posId);
 	}
 	
-	public Position createPosition(Position position) {
+	public Position createPosition(PositionDTO positionInput) {
+		Position position = new Position();
+		position.setPosName(positionInput.getPosName());
+		position.setPosCode(positionInput.getPosCode());
+		position.setPosDesc(positionInput.getPosDesc());
 		poRepository.save(position);
 		return position;
 	}
@@ -32,14 +37,19 @@ public class PositionService {
 		return pos.isPresent();
 	}
 	
-	public Position updatePosition(Position position, Long posId) {
+	public Position updatePosition(Long posId, PositionDTO positionInput) {
 		Optional<Position> pos = poRepository.findById(posId);
-			Position newPos = pos.get();
-			newPos.setPosName(position.getPosName());
-			newPos.setPosCode(position.getPosCode());
-			newPos.setPosDesc(position.getPosDesc());
-			poRepository.save(newPos);
-			return newPos;
+			if(pos.isPresent()) {
+				Position newPos = pos.get();
+				newPos.setPosName(positionInput.getPosName());
+				newPos.setPosCode(positionInput.getPosCode());
+				newPos.setPosDesc(positionInput.getPosDesc());
+				poRepository.save(newPos);
+				return newPos;
+			}else {
+				return null;
+			}
+			
 	}
 	
 	public Long deletePosition(Long posId) {

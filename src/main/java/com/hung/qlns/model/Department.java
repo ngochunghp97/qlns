@@ -21,6 +21,7 @@ public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="de_id")
+	@JsonProperty("de_id")
 	private Long deId;
 	@Column(name="de_name")
 	@JsonProperty("de_name")

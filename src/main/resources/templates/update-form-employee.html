@@ -44,17 +44,53 @@
 				<h2>Thêm mới dữ liệu</h2>
 				<table>
 					<tr>
-						<td><span>Tên vị trí</span><span style="color: red">*</span></td>
-						<td><input type="text" class="form-control" id="pos-name"></td>
+						<td><span>Tên nhân viên</span><span style="color: red">*</span></td>
+						<td><input type="text" class="form-control" id="name"></td>
 					</tr>
 					<tr>
-						<td><span>Mã vị trí</span><span style="color: red">*</span></td>
-						<td><input type="text" class="form-control" id="pos-code"></td>
+						<td><span>Ngày tháng năm sinh</span><span style="color: red">*</span></td>
+						<td><input type="date" class="form-control"
+							style="width: 182px;" id="birthday"></td>
 					</tr>
 					<tr>
-						<td><span>Mô tả vị trí</span></td>
-						<td><textarea class="form-control" id="pos-desc"
-								style="width: 182px;"></textarea></td>
+						<td><span>Giới tính</span><span style="color: red">*</span></td>
+						<td><select class="form-control" id="gender">
+								<option value="0"></option>
+								<option value="1">Nam</option>
+								<option value="2">Nữ</option>
+						</select></td>
+					</tr>
+					<tr>
+						<td><span>Địa chỉ</span><span style="color: red">*</span></td>
+						<td><textarea class="form-control" style="width: 182px;"
+								id="address"></textarea></td>
+					</tr>
+					<tr>
+						<td><span>Ngày bắt đầu làm việc</span><span
+							style="color: red">*</span></td>
+						<td><input type="date" class="form-control"
+							style="width: 182px;" id="start-date"></td>
+					</tr>
+					<tr>
+						<td><span>Ngày nghỉ việc</span></td>
+						<td><input type="date" class="form-control"
+							style="width: 182px;" id="end-date"></td>
+					</tr>
+					<tr>
+						<td><span>Kinh ngiệm làm việc</span></td>
+						<td><input type="text" class="form-control" id="experience"></td>
+					</tr>
+					<tr>
+						<td><span>Chuyên ngành</span><span style="color: red">*</span></td>
+						<td><input type="text" class="form-control" id="major"></td>
+					</tr>
+					<tr>
+						<td><span>Ngoại ngữ</span></td>
+						<td><input type="text" class="form-control" id="language"></td>
+					</tr>
+					<tr>
+						<td><span>Tin học</span></td>
+						<td><input type="text" class="form-control" id="computer"></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><span id="error"
@@ -62,7 +98,7 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<button class="btn btn-primary" onclick="addNew()">Gửi</button>
+							<button class="btn btn-primary" onclick="update()">Gửi</button>
 							<button class="btn btn-primary" onclick="goBack()">Quay
 								lại</button>
 						</td>
@@ -76,8 +112,9 @@
 			<div class="col-md-12">Footer</div>
 		</div>
 	</div>
-	<script src="/js/is-valid-position.js">
+	<script src="/js/is-valid.js">
 		
 	</script>
 </body>
+
 </html>

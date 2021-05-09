@@ -41,20 +41,19 @@
 		<div class="row content">
 			<div class="col-md-2"></div>
 			<div class="col-md-8" align="center">
-				<h2>Thêm mới dữ liệu</h2>
+				<h2>Gán phòng ban cho nhân viên</h2>
 				<table>
 					<tr>
-						<td><span>Tên vị trí</span><span style="color: red">*</span></td>
-						<td><input type="text" class="form-control" id="pos-name"></td>
+						<td><span>Tên nhân viên</span><span style="color: red">*</span></td>
+						<td><select class="form-control" id="em-name">
+								<option value="0"></option>
+						</select></td>
 					</tr>
 					<tr>
-						<td><span>Mã vị trí</span><span style="color: red">*</span></td>
-						<td><input type="text" class="form-control" id="pos-code"></td>
-					</tr>
-					<tr>
-						<td><span>Mô tả vị trí</span></td>
-						<td><textarea class="form-control" id="pos-desc"
-								style="width: 182px;"></textarea></td>
+						<td><span>Phòng ban</span><span style="color: red">*</span></td>
+						<td><select class="form-control" id="de-name">
+								<option value="0"></option>
+						</select></td>
 					</tr>
 					<tr>
 						<td colspan="2" align="center"><span id="error"
@@ -62,7 +61,7 @@
 					</tr>
 					<tr>
 						<td colspan="2" align="center">
-							<button class="btn btn-primary" onclick="addNew()">Gửi</button>
+							<button class="btn btn-primary" onclick="assign()">Gửi</button>
 							<button class="btn btn-primary" onclick="goBack()">Quay
 								lại</button>
 						</td>
@@ -76,8 +75,12 @@
 			<div class="col-md-12">Footer</div>
 		</div>
 	</div>
-	<script src="/js/is-valid-position.js">
+	<script src="/js/is-valid-assign-department.js">
+		
+	</script>
+	<script src="/js/assign-department-ajax.js">
 		
 	</script>
 </body>
+
 </html>

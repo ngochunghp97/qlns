@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hung.qlns.dto.DepartmentDTO;
 import com.hung.qlns.model.Department;
 import com.hung.qlns.repository.DepartmentRepository;
 
@@ -28,9 +29,14 @@ public class DepartmentService {
 		return deRepository.findById(deId);
 	}
 	
-	public Department createDepartment(Department department) {
-		deRepository.save(department);
-		return department;
+	public Department createDepartment(DepartmentDTO departmentInput) {
+		Department de = new Department();
+		de.setDeName(departmentInput.getDeName());
+		de.setDeCode(departmentInput.getDeCode());
+		de.setDeDesc(departmentInput.getDeDesc());
+		
+		deRepository.save(de);
+		return de;
 	}
 	public Department updateDepartment(Department department, Long deId) {
 		Optional<Department> de = deRepository.findById(deId);

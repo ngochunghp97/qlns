@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Thông tin phòng ban</title>
+<title>Thông tin nhân viên</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <script src="/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/basic.css">
@@ -55,37 +55,71 @@
 		</div>
 		<div class="row menu-2">
 			<div class="col-md-2"></div>
-			<div class="col-md-8"></div>
-			<div class="col-md-2">
-				<a class="btn btn-primary" href="/department/create">Thêm mới</a>
+			<div class="col-md-7"></div>
+			<div class="col-md-3">
+				<a class="btn btn-primary" href="/employee/create">Thêm mới</a> <a
+					class="btn btn-primary" href="#">Sửa</a> <a class="btn btn-primary"
+					onclick="goBack()">Quay lại</a>
 			</div>
 		</div>
+		<div style="text-align: center; padding: 10px;">
+			<h2>Thông tin chi tiết nhân viên</h2>
+		</div>
+		<div style="padding: 15px;"></div>
 		<div class="row content">
 			<div class="col-12">
-				<table class="table table-bordered">
-					<thead>
-						<tr>
-							<th>STT</th>
-							<th>Tên phòng</th>
-							<th>Mã phòng</th>
-							<th>Mô tả</th>
-							<th>Thao tác</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="department,i: ${deList}">
-							<td th:text="${(i.index+1)}"></td>
-							<td th:text="${department.deName}"></td>
-							<td th:text="${department.deCode}"></td>
-							<td th:text="${department.deDesc}"></td>
-							<td><button class="btn btn-info" th:id="${department.deId}"
-									onclick="detailDe(this.id)">Chi tiết</button>
-								<button class="btn btn-info" th:id="${department.deId}"
-									onclick="repairDe(this.id)">Sửa</button>
-								<button class="btn btn-danger" th:id="${department.deId}"
-									onclick="">Xóa</button></td>
-						</tr>
-					</tbody>
+				<table class="table table-striped" th:each="e,i: ${emDetailList}"
+					style="text-align: center;">
+					<tr>
+						<th>Mã nhân viên</th>
+						<td th:text="${(e.emId)}" th:id="em-id" th:value="${e.emId}"></td>
+					</tr>
+					<tr>
+						<th>Tên nhân viên</th>
+						<td th:text="${e.name}"></td>
+					</tr>
+					<tr>
+						<th>Sinh nhật</th>
+						<td th:text="${e.birthday}"></td>
+					</tr>
+					<tr>
+						<th>Địa chỉ</th>
+						<td th:text="${e.address}"></td>
+					</tr>
+					<tr>
+						<th>Giới tính</th>
+						<td th:text="${e.gender}"></td>
+					</tr>
+					<tr>
+						<th>Ngày bắt đầu</th>
+						<td th:text="${(e.startDate)}"></td>
+					</tr>
+					<tr>
+						<th>Ngày nghỉ việc</th>
+						<td th:text="${(e.endDate)}"></td>
+					</tr>
+					<tr>
+						<th>Kinh nghiệm</th>
+						<td th:text="${e.experience}"></td>
+					</tr>
+					<tr>
+						<th>Tin học</th>
+						<td th:text="${e.computer}"></td>
+					</tr>
+					<tr>
+						<th>Ngoại ngữ</th>
+						<td th:text="${e.language}"></td>
+					</tr>
+					<tr>
+						<th>Chuyên ngành</th>
+						<td th:text="${e.major}"></td>
+					</tr>
+					<tr id="pos-name">
+						<th>Vị trí</th>
+					</tr>
+					<tr id="de-name">
+						<th>Phòng ban</th>
+					</tr>
 				</table>
 			</div>
 		</div>
@@ -93,6 +127,6 @@
 			<div class="col-md-12">Footer</div>
 		</div>
 	</div>
-	<script src="/js/detail.js"></script>
+	<script src="/js/employee-detail-ajax.js"></script>
 </body>
 </html>

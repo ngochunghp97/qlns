@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <title>Thông tin nhân viên</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/basic.css">
 </head>
 <body>
@@ -54,9 +55,11 @@
 		</div>
 		<div class="row menu-2">
 			<div class="col-md-2"></div>
-			<div class="col-md-8"></div>
-			<div class="col-md-2">
-				<a class="btn btn-primary" href="/employee/create">Thêm mới</a>
+			<div class="col-md-6"></div>
+			<div class="col-md-4">
+				<a class="btn btn-primary" href="/employee/create">Thêm mới</a> <a
+					class="btn btn-primary" href="/assign-position">Gán vị trí</a> <a
+					class="btn btn-primary" href="/assign-department">Gán phòng ban</a>
 			</div>
 		</div>
 		<div class="row content">
@@ -68,13 +71,8 @@
 							<th>Tên nhân viên</th>
 							<th>Sinh nhật</th>
 							<th>Giới tính</th>
-							<th>Địa chỉ</th>
-							<th>Ngày vào làm</th>
+							<th>Ngày bắt đầu</th>
 							<th>Ngày nghỉ việc</th>
-							<th>Kinh nghiệm</th>
-							<th>Ngoại ngữ</th>
-							<th>Tin học</th>
-							<th>Chuyên ngành</th>
 							<th>Thao tác</th>
 						</tr>
 					</thead>
@@ -82,17 +80,17 @@
 						<tr th:each="employee,i: ${emList}">
 							<td th:text="${(i.index+1)}"></td>
 							<td th:text="${employee.name}"></td>
-							<td th:text="${employee.birthDay}"></td>
-							<td th:text="${employee.gender}"></td>
-							<td th:text="${employee.address}"></td>
+							<td th:text="${employee.birthday}"></td>
+							<td><span th:if="${employee.gender == 1}">Nam</span> <span
+								th:unless="${employee.gender == 1}">Nữ</span></td>
 							<td th:text="${employee.startDate}"></td>
 							<td th:text="${employee.endDate}"></td>
-							<td th:text="${employee.experience}"></td>
-							<td th:text="${employee.language}"></td>
-							<td th:text="${employee.computer}"></td>
-							<td th:text="${employee.major}"></td>
-							<td><a class="btn btn-info" href="#"> Chi tiết</a> <a
-								class="btn btn-danger">Xóa</a></td>
+							<td><button class="btn btn-info" th:id="${employee.emId}"
+									onclick="detail(this.id)">Chi tiết</button>
+								<button class="btn btn-info" th:id="${employee.emId}"
+									onclick="repairEm(this.id)">Sửa</button>
+								<button class="btn btn-danger" th:id="${employee.emId}"
+									onclick="deleteEm(this.id)">Xóa</button></td>
 						</tr>
 					</tbody>
 				</table>
@@ -102,6 +100,6 @@
 			<div class="col-md-12">Footer</div>
 		</div>
 	</div>
-	<script src="/js/is-valid.js"></script>
+	<script src="/js/detail.js"></script>
 </body>
 </html>
