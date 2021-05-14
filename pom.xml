@@ -21,7 +21,7 @@
 		<spring.data-jpa.version>2.4.3</spring.data-jpa.version>
 		<spring.thymeleaf.version>2.4.3</spring.thymeleaf.version>
 		<spring.security.vesion>5.4.5</spring.security.vesion>
-		<spring.security.config.version>5.4.5</spring.security.config.version>
+		<spring.security.config.version>5.4.2</spring.security.config.version>
 		<spring.thymeleaf.extras.version>3.0.4.RELEASE</spring.thymeleaf.extras.version>
 	</properties>
 	<dependencies>
@@ -74,7 +74,7 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
-			<version>5.4.2</version>
+			<version>${spring.security.config.version}</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.thymeleaf.extras/thymeleaf-extras-springsecurity5 -->
