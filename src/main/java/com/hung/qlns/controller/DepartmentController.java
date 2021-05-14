@@ -44,21 +44,15 @@ public class DepartmentController {
 	}
 	
 	@PutMapping("/department/{id}")
-	public ResponseEntity<Object> updateDepartment(@PathVariable("id") Long deId, @RequestBody  Department department){
-		if(deService.isValid(deId)) {
-			return new ResponseEntity<Object>(deService.updateDepartment(department, deId), HttpStatus.OK);
-		}else {
-			return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
-		}
+	public ResponseEntity<Department> updateDepartment(@PathVariable("id") Long deId, @RequestBody  DepartmentDTO departmentInput){
+		Department de = deService.updateDepartment(deId, departmentInput);
+		return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), de), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/department/{id}")
-	public ResponseEntity<Object> deleteDepartment(@PathVariable("id") Long deId, @RequestBody Department department){
-		if(deService.isValid(deId)) {
-			return new ResponseEntity<Object>(deService.deleteDepartment(deId), HttpStatus.OK);
-		}else {
-			return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
-		}
+	public ResponseEntity<Boolean> deleteDepartment(@PathVariable("id") Long deId){
+		Boolean isDelete = deService.deleteDepartment(deId);
+		return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), isDelete), HttpStatus.OK);
 	}
 	
 }

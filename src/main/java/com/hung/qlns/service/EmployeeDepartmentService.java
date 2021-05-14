@@ -49,11 +49,12 @@ public class EmployeeDepartmentService {
 
 	public EmployeeDepartment update(EmployeeDepartmentDTO emDeInput) {
 		Optional<Department> de = deRepository.findById(emDeInput.getDeId());
+		Optional<Employee> em = emRepository.findById(emDeInput.getEmId());
+		Employee e = em.get();
 
-		Optional<EmployeeDepartment> ed = emDeRepositiory.findById(emDeInput.getEmId());
-		EmployeeDepartment eds = ed.get();
-		eds.setDepartment(de.get());
-		emDeRepositiory.save(eds);
-		return eds;
+		EmployeeDepartment ed = emDeRepositiory.findByEmployee(e);
+		ed.setDepartment(de.get());
+		emDeRepositiory.save(ed);
+		return ed;
 	}
 }

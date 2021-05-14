@@ -26,29 +26,32 @@ public class EmployeeService {
 		return emRepository.findById(emId);
 	}
 
-	public Employee updateEmployee(Employee employee, Long emId) {
+	public Employee updateEmployee(Long emId, Employee employee) {
 		Optional<Employee> emp = emRepository.findById(emId);
+		if(emp.isPresent()) {
+			Employee nEmp = emp.get();
+			nEmp.setName(employee.getName());
+			nEmp.setBirthday(employee.getBirthday());
+			nEmp.setAddress(employee.getAddress());
+			nEmp.setStartDate(employee.getStartDate());
+			nEmp.setEndDate(employee.getEndDate());
+			nEmp.setExperience(employee.getExperience());
+			nEmp.setLanguage(employee.getLanguage());
+			nEmp.setComputer(employee.getComputer());
+			nEmp.setMajor(employee.getMajor());
+			nEmp.setGender(employee.getGender());
+			emRepository.save(nEmp);
 
-		Employee nEmp = emp.get();
-		nEmp.setName(employee.getName());
-		nEmp.setBirthDay(employee.getBirthDay());
-		nEmp.setAddress(employee.getAddress());
-		nEmp.setStartDate(employee.getStartDate());
-		nEmp.setEndDate(employee.getEndDate());
-		nEmp.setExperience(employee.getExperience());
-		nEmp.setLanguage(employee.getLanguage());
-		nEmp.setComputer(employee.getComputer());
-		nEmp.setMajor(employee.getMajor());
-		nEmp.setGender(employee.getGender());
-		emRepository.save(nEmp);
-
-		return nEmp;
+			return nEmp;
+		}else {
+			return null;			
+		}		
 	}
 
 	public Employee createEmployee(EmployeeDTO employeeInput) {
 		Employee em = new Employee();
 		em.setName(employeeInput.getName());
-		em.setBirthDay(employeeInput.getBirthDay());
+		em.setBirthday(employeeInput.getBirthday());
 		em.setAddress(employeeInput.getAddress());
 		em.setStartDate(employeeInput.getStartDate());
 		em.setEndDate(employeeInput.getEndDate());

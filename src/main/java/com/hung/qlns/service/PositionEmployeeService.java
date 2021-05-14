@@ -38,12 +38,12 @@ public class PositionEmployeeService {
 
 	public PositionEmployee update(PositionEmployeeDTO posEmInput) {
 		Optional<Position> pos = posRepository.findById(posEmInput.getPosId());
-
-		Optional<PositionEmployee> pe = posEmRepository.findById(posEmInput.getEmId());
-		PositionEmployee pes = pe.get();
-		pes.setPosition(pos.get());
-		posEmRepository.save(pes);
-		return pes;
+		Optional<Employee> em = emRepository.findById(posEmInput.getEmId());
+		Employee e = em.get();
+		PositionEmployee pe = posEmRepository.findByEmployee(e);
+		pe.setPosition(pos.get());
+		posEmRepository.save(pe);
+		return pe;
 
 	}
 
@@ -56,7 +56,6 @@ public class PositionEmployeeService {
 	public boolean isUnique(PositionEmployeeDTO posEmInput) {
 		Optional<Employee> e = emRepository.findById(posEmInput.getEmId());
 		Employee em = e.get();
-		
 		return posEmRepository.findByEmployee(em) == null;
 	}
 

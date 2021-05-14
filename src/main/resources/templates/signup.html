@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Sign Up</title>
+<meta charset="UTF-8">
+<title>Đăng ký</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -13,19 +14,54 @@
 			</div>
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4" style="background-color: #F5F5F5">
-				<form th:action="@{/signup}" method="post" class="form-group">
-					<label>UserName</label> <input type="text" name="username"
-						placeholder="Input username" class="form-control"> <label>Password</label>
-					<input type="password" name="password" placeholder="Input password"
-						class="form-control"> <label>Repeat Password</label> <input
-						type="password" name="repeat-password"
-						placeholder="Repeat password" class="form-control"> <input
-						type="submit" class="btn btn-primary form-control"
-						style="margin-top: 10px;" value="signup">
-				</form>
+				<table class="form-group" style="width: 100%">
+					<tr>
+						<td><label>Username</label></td>
+					</tr>
+					<tr>
+						<td><input type="text" id="username"
+						placeholder="Input username" class="form-control"></td>
+					</tr>
+					<tr>
+						<td><label>Password</label></td>
+					</tr>
+					<tr>
+						<td><input type="password" id="password" placeholder="Input password"
+						class="form-control"></td>
+					</tr>
+					<tr>
+						<td><label>Repeat Password</label></td>
+					</tr>
+					<tr>
+						<td><input
+						type="password" id="repeat-password" placeholder="Repeat password"
+						class="form-control"></td>
+					</tr>
+					<tr style="text-align: center;">
+						<td><span id="error" style="color: red;">Vui
+						lòng nhập thông tin</span></td>
+					</tr>
+					<tr><td style="padding: 3px"></td></tr>
+					<tr style="text-align: center;">
+						 <td><span id="error-2" style="color: red;">Mật
+						khẩu chưa giống nhau</span></td>
+					</tr>
+					<tr><td style="padding: 3px"></td></tr>
+					<tr>
+						<td><button class="btn btn-primary form-control"
+						style="margin-top: 10px;" onclick="addUser()">Sign Up</button></td>
+					</tr>
+					<tr>
+						<td><button class="btn btn-primary form-control" style="margin-top: 10px;"
+						onclick="goBack()">Quay lại</button></td>
+					</tr>				
+				</table>
 			</div>
 			<div class="col-sm-4"></div>
 		</div>
 	</div>
+	<script src="/js/signup.js">
+		
+	</script>
 </body>
 </html>

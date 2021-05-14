@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hung.qlns.dto.PositionDTO;
+import com.hung.qlns.model.Employee;
 import com.hung.qlns.model.Position;
 import com.hung.qlns.repository.PositionRepository;
 
@@ -52,9 +53,15 @@ public class PositionService {
 			
 	}
 	
-	public Long deletePosition(Long posId) {
-		poRepository.deleteById(posId);		
-		return posId;
+	public boolean deletePosition(Long posId) {
+		Optional<Position> po = poRepository.findById(posId);
+		if(po.isPresent()) {
+			Position p = po.get();
+			poRepository.delete(p);
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 }

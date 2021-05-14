@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,24 +37,21 @@ public class PositionController {
 		return new ResponseEntity<Object>(poService.getPosition(posId), HttpStatus.OK);
 	}
 
-	@PostMapping("/position/create")
+	@PostMapping("/position")
 	public ResponseEntity<Position> createPosition(@RequestBody PositionDTO positionInput) {
 		Position position = poService.createPosition(positionInput);
 		return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), position),HttpStatus.OK);
 	}
 
-	@GetMapping("/position/update/{id}")
+	@PutMapping("/position/{id}")
 	public ResponseEntity<Position> updatePosition(@PathVariable("id") Long posId, @RequestBody PositionDTO positionInput) {
-//			Position p = poService.updatePosition(posId, positionInput);
-			return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), poService.updatePosition(posId, positionInput)), HttpStatus.OK);
+			Position p = poService.updatePosition(posId, positionInput);
+			return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), p), HttpStatus.OK);
 	}
 
-	@GetMapping("/position/delete/{id}")
-	public ResponseEntity<Object> deletePosition(@PathVariable("id") Long posId) {
-		if (poService.isValid(posId)) {
-			return new ResponseEntity<Object>(poService.deletePosition(posId), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
-		}
+	@DeleteMapping("/position/{id}")
+	public ResponseEntity<Boolean> deletePosition(@PathVariable("id") Long posId) {
+		Boolean isDelete = poService.deletePosition(posId);
+		return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), isDelete),HttpStatus.OK);
 	}
 }

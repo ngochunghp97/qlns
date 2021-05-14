@@ -1,6 +1,7 @@
 package com.hung.qlns.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -32,7 +33,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 		.antMatchers("/").permitAll()
 		.antMatchers("/login").permitAll()
-		.antMatchers("/signup").permitAll()
+		.antMatchers("/signup").permitAll()	
+		.antMatchers(HttpMethod.POST, "/api/user").permitAll()
+//		.antMatchers(HttpMethod.POST, "/api/employee").hasAnyAuthority()
+//		.antMatchers(HttpMethod.POST, "/api/position").hasAnyAuthority()
+//		.antMatchers(HttpMethod.POST, "/api/department").hasAnyAuthority()
+//		.antMatchers(HttpMethod.PUT, "/api/employee/**").hasAnyAuthority()
+//		.antMatchers(HttpMethod.PUT, "/api/position/**").hasAnyAuthority()
+//		.antMatchers(HttpMethod.PUT, "/api/department/**").hasAnyAuthority()
+//		.antMatchers(HttpMethod.DELETE, "/api/employee/**").hasAnyAuthority()
+//		.antMatchers(HttpMethod.DELETE, "/api/position/**").hasRole("USER")
+//		.antMatchers(HttpMethod.DELETE, "/api/department/**").hasAnyAuthority()
 		.anyRequest().authenticated()
 		
 		.and()
@@ -49,7 +60,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		.and()
 		.exceptionHandling()
-		.accessDeniedPage("/access-denied");
+		.accessDeniedPage("/access-denied")
+		
+		//bat khi test do loi method post, put, delete
+		.and()
+		.csrf().disable();
 	}
 
 	public void configure(WebSecurity web) throws Exception {

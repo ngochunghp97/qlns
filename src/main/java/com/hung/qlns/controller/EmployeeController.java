@@ -52,22 +52,15 @@ public class EmployeeController {
 	}
 
 	@PutMapping("/employee/{id}")
-	public ResponseEntity<Object> updateEmployee(@RequestBody Employee employee, @PathVariable("id") Long emId) {
-		if (emService.isValid(emId)) {
-			return new ResponseEntity<Object>(emService.updateEmployee(employee, emId), HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
-		}
-
+	public ResponseEntity<Employee> updateEmployee(@PathVariable("id") Long emId, @RequestBody Employee employee) {
+		Employee em = emService.updateEmployee(emId, employee);
+		return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), em),HttpStatus.OK);
 	}
 
-	@GetMapping("/employees/{emId}")
+	@DeleteMapping("/employee/{emId}")
 	public ResponseEntity<Boolean> deleteEmployee(@PathVariable("emId") Long emId) {
 		Boolean isDelete = emService.deleteEmployee(emId);
 		return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), isDelete),HttpStatus.OK);
-//		return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), "false"),HttpStatus.OK);
-		
-
 	}
 	
 

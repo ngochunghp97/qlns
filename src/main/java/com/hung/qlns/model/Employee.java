@@ -28,7 +28,7 @@ public class Employee {
 	@Column(name ="name")
 	private String name;
 	@Column(name="birthday")
-	private Date birthDay;
+	private Date birthday;
 	@Column(name="address")
 	private String address;
 	@Column(name="start_date")
@@ -65,11 +65,11 @@ public class Employee {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getBirthDay() {
-		return birthDay;
+	public Date getBirthday() {
+		return birthday;
 	}
-	public void setBirthDay(Date birthDay) {
-		this.birthDay = birthDay;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 	public String getAddress() {
 		return address;
@@ -131,13 +131,13 @@ public class Employee {
 	public void setEmpDeList(List<EmployeeDepartment> empDeList) {
 		this.empDeList = empDeList;
 	}
-	public Employee(Long emId, String name, Date birthDay, String address, Date startDate, Date endDate, String experience,
+	public Employee(Long emId, String name, Date birthday, String address, Date startDate, Date endDate, String experience,
 			String language, String computer, String major, int gender, List<PositionEmployee> posEmList,
 			List<EmployeeDepartment> empDeList) {
 		super();
 		this.emId = emId;
 		this.name = name;
-		this.birthDay = birthDay;
+		this.birthday = birthday;
 		this.address = address;
 		this.startDate = startDate;
 		this.endDate = endDate;

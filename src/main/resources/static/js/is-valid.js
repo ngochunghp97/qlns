@@ -19,7 +19,7 @@ function addNew() {
 		//call api-insert data
 		$.ajax({
 					type: "POST",
-					url: "http://localhost:8081/api/employee",
+					url: "/api/employee",
 					contentType: "application/json",
 					data: JSON.stringify({
 						"name": name,
@@ -87,12 +87,13 @@ function update() {
 	var experience = document.getElementById("experience").value;
 	var language = document.getElementById("language").value;
 	var computer = document.getElementById("computer").value;
+	var id = document.getElementById("em-id").innerHTML;
 
 	if (validateData(name, birthday, gender, address, startDate, major)) {
 		//call api-insert data
 		$.ajax({
 					type: "PUT",
-					url: "http://localhost:8081/api/employee"+id,
+					url: "/api/employee/"+id,
 					contentType: "application/json",
 					data: JSON.stringify({
 						"name": name,

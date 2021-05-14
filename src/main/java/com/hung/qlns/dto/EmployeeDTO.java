@@ -9,7 +9,7 @@ public class EmployeeDTO {
 	@JsonProperty("name")
 	private String name;
 	@JsonProperty("birthday")
-	private Date birthDay;
+	private Date birthday;
 	@JsonProperty("address")
 	private String address;
 	@JsonProperty("start_date")
@@ -39,12 +39,12 @@ public class EmployeeDTO {
 		this.name = name;
 	}
 
-	public Date getBirthDay() {
-		return birthDay;
+	public Date getBirthday() {
+		return birthday;
 	}
 
-	public void setBirthDay(Date birthDay) {
-		this.birthDay = birthDay;
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 	public String getAddress() {
@@ -127,11 +127,11 @@ public class EmployeeDTO {
 		this.deCode = deCode;
 	}
 	
-	public EmployeeDTO(String name, Date birthDay, String address, Date startDate, Date endDate, String experience,
+	public EmployeeDTO(String name, Date birthday, String address, Date startDate, Date endDate, String experience,
 			String language, String computer, String major, int gender, String posCode, String deCode) {
 		super();
 		this.name = name;
-		this.birthDay = birthDay;
+		this.birthday = birthday;
 		this.address = address;
 		this.startDate = startDate;
 		this.endDate = endDate;

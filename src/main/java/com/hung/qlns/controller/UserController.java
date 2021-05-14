@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hung.qlns.dto.ResponseData;
+import com.hung.qlns.dto.UserDTO;
 import com.hung.qlns.model.User;
 import com.hung.qlns.service.UserService;
 
@@ -21,45 +23,40 @@ public class UserController {
 
 	@Autowired
 	private UserService uService;
-	
+
 	@GetMapping("/user")
-	public ResponseEntity<Object> allUser(){
-		return new ResponseEntity<Object>(uService.allUser(),HttpStatus.OK);
+	public ResponseEntity<Object> allUser() {
+		return new ResponseEntity<Object>(uService.allUser(), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/user/{id}")
-	public ResponseEntity<Object> getUser(@PathVariable("id") Long userId){
+	public ResponseEntity<Object> getUser(@PathVariable("id") Long userId) {
 		return new ResponseEntity<Object>(uService.getUser(userId), HttpStatus.OK);
 	}
-	
+
 	@PostMapping("/user")
-	public ResponseEntity<Object> createUser(@RequestBody User user){
-		if(uService.isValidUserName(user.getUserName())) {
-		return new ResponseEntity<Object>(uService.createUser(user),HttpStatus.OK);
-		}else {
-			return new ResponseEntity<Object>(HttpStatus.FOUND);
+	public ResponseEntity<User> createUser(@RequestBody UserDTO userInput) {
+		if (uService.isValidUserName(userInput.getUserName())) {
+			User user = uService.createUser(userInput);
+			return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), user), HttpStatus.OK);
+		} else {
+			return new ResponseEntity(HttpStatus.FOUND);
 		}
 	}
-	
+
 	@PutMapping("/user/{id}")
-	public ResponseEntity<Object> updateUser(@PathVariable("id") Long userId, @RequestBody User user){
-		if(uService.isValid(userId)) {
-			if(uService.isValidUserName(user.getUserName())) {
-			return new ResponseEntity<Object>(uService.updateUser(userId, user), HttpStatus.OK);
-			} else {
-				return new ResponseEntity<Object>(HttpStatus.FOUND);
-			}
-		}else {
-			return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
+	public ResponseEntity<User> updateUser(@PathVariable("id") Long userId, @RequestBody UserDTO userInput) {
+		if (uService.isValidUserName(userInput.getUserName())) {
+			User user = uService.updateUser(userId, userInput);
+			return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), user), HttpStatus.OK);
+		} else {
+			return new ResponseEntity(HttpStatus.FOUND);
 		}
 	}
-	
+
 	@DeleteMapping("/user/{id}")
-	public ResponseEntity<Object> deleteUser(@PathVariable("id") Long userId, @RequestBody User user){
-		if(uService.isValid(userId)) {
-			return new ResponseEntity<Object>(uService.deleteUser(userId), HttpStatus.OK);
-		}else {
-			return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
-		}
+	public ResponseEntity<Boolean> deleteUser(@PathVariable("id") Long userId) {
+		Boolean isDelete = uService.deleteUser(userId);
+			return new ResponseEntity(new ResponseData(HttpStatus.OK.value(), isDelete), HttpStatus.OK);
 	}
 }

@@ -34,3 +34,15 @@ $(document).ready(function() {
 function goBack() {
 	window.history.back();
 }
+function repairPos() {
+	var id = document.getElementById("pos-id").innerHTML;
+	window.location.href = "http://localhost:8081/position-update/" + id;
+}
+function repairDe() {
+	var id = document.getElementById("de-id").innerHTML;
+	window.location.href = "http://localhost:8081/department-update/" + id;
+}
+function repairEm(){
+	var id = document.getElementById("em-id").innerHTML;
+	window.location.href = "http://localhost:8081/employee-update/" + id;
+}

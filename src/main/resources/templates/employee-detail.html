@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Thông tin nhân viên</title>
+<title>Chi tiết nhân viên</title>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <script src="/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/css/basic.css">
@@ -58,8 +58,8 @@
 			<div class="col-md-7"></div>
 			<div class="col-md-3">
 				<a class="btn btn-primary" href="/employee/create">Thêm mới</a> <a
-					class="btn btn-primary" href="#">Sửa</a> <a class="btn btn-primary"
-					onclick="goBack()">Quay lại</a>
+					class="btn btn-primary" onclick="repairEm()">Sửa</a> <a
+					class="btn btn-primary" onclick="goBack()">Quay lại</a>
 			</div>
 		</div>
 		<div style="text-align: center; padding: 10px;">
@@ -88,7 +88,8 @@
 					</tr>
 					<tr>
 						<th>Giới tính</th>
-						<td th:text="${e.gender}"></td>
+						<td><span th:if="${e.gender == 1}">Nam</span> <span
+							th:unless="${e.gender == 1}">Nữ</span></td>
 					</tr>
 					<tr>
 						<th>Ngày bắt đầu</th>
@@ -124,7 +125,10 @@
 			</div>
 		</div>
 		<div class="row footer">
-			<div class="col-md-12">Footer</div>
+			<div class="col-md-12">
+				Demo by Nguyễn Ngọc Hưng <br> FB:
+				https://www.facebook.com/hung97.hpv/
+			</div>
 		</div>
 	</div>
 	<script src="/js/employee-detail-ajax.js"></script>
